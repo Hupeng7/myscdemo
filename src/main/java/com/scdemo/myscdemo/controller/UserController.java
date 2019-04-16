@@ -1,7 +1,6 @@
 package com.scdemo.myscdemo.controller;
 
 import com.scdemo.myscdemo.entity.User;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +10,7 @@ import java.util.*;
 
 /**
  * @ClassName UserController
- * @Description TODO
+ * @Description Swagger2 对代码侵入性还是有的  每个controller上都需要添加注解
  * @Author hupen
  * @Date 2019/4/4 17:32
  * @Version 1.0

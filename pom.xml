@@ -75,6 +75,25 @@
         <!--<version>2.7.0</version>-->
         <!--</dependency>-->
 
+        <!-- jackson也为此提供了一整套的序列化方案
+        Spring Boot和Feign中使用Java 8时间日期API（LocalDate等）的序列化问题-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!--配置Xml数据与维护对象属性的关系所要使用的注解-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+
+        <!-- Spring Security的依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
