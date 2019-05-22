@@ -14,27 +14,32 @@ import java.util.Date;
  * @Version 1.0
  */
 @Service
-public class UserServiceImpl implements UserService {
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+//public class UserServiceImpl implements UserService {
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
+//
+//    @Override
+//    public void create(String name, Integer age, Date birthday) {
+//        jdbcTemplate.update("insert into USER(NAME,AGE,BIRTHDAY) values(?,?,?)", name, age, birthday);
+//    }
+//
+//    @Override
+//    public void deleteByName(String name) {
+//        jdbcTemplate.update("delete from USER where NAME = ?", name);
+//    }
+//
+//    @Override
+//    public Integer getAllUsers() {
+//        return jdbcTemplate.queryForObject("select count(1) from USER", Integer.class);
+//    }
+//
+//    @Override
+//    public void deleteAllUsers() {
+//        jdbcTemplate.update("delete from USER");
+//    }
+//}
 
-    @Override
-    public void create(String name, Integer age, Date birthday) {
-        jdbcTemplate.update("insert into USER(NAME,AGE,BIRTHDAY) values(?,?,?)", name, age, birthday);
-    }
 
-    @Override
-    public void deleteByName(String name) {
-        jdbcTemplate.update("delete from USER where NAME = ?", name);
-    }
+public class UserServiceImpl {
 
-    @Override
-    public Integer getAllUsers() {
-        return jdbcTemplate.queryForObject("select count(1) from USER", Integer.class);
-    }
-
-    @Override
-    public void deleteAllUsers() {
-        jdbcTemplate.update("delete from USER");
-    }
 }

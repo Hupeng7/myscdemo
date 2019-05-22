@@ -16,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Configuration
-public class MessageConverterConfig1 extends WebMvcConfigurerAdapter {
+public class MessageConverterConfig extends WebMvcConfigurerAdapter {
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.xml();

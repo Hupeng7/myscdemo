@@ -1,8 +1,8 @@
 package com.scdemo.myscdemo.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName HelloRestController
@@ -18,5 +18,14 @@ public class HelloRestController {
     public String hello() {
         return "Hello World,RestController = @Controller + @ResponseBody";
     }
+
+    @ApiOperation(value = "aop demo", notes = "aop例子")
+    @ApiImplicitParam(name = "name", value = "名称", required = true, paramType = "path", dataType = "String")
+    @RequestMapping(value = "/helloAop", method = RequestMethod.GET)
+    @ResponseBody
+    public String helloAop(@RequestParam String name) {
+        return "hello aop " + name;
+    }
+
 
 }

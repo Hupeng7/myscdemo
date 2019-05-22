@@ -1,0 +1,47 @@
+    if (card.is_recommend) {
+      const merchant_x_product_card = await this.find('merchant_x_product_card', { merchant_id: user.merchant_id, card_id });
+      if (merchant_x_product_card) {
+        const level__list = await this.filter('member_level', { merchant_id: user.merchant_id });
+        let member_level_x_product_card__list = _.sortBy(await this.filter('member_level_x_product_card', { level_id__in: _.map(level__list, 'id'), card_id }), 'level.value');
+        if (member_level_x_product_card__list.length) {
+          const user_array = [];
+          let cur_user = user;
+          let equal_count = 0;
+          let prev_level_money = 0;
+          let max_change_level_count = 3;
+          let current_member_level_x_product_card = null;
+          const list = [];
+          while (cur_user && user_array.indexOf(cur_user.id) === -1) {
+            user_array.push(cur_user.id);
+            if (!current_member_level_x_product_card
+              || current_member_level_x_product_card.equal_count <= equal_count
+              || cur_user.level_id != user.level_id
+              || current_member_level_x_product_card.level.value < cur_user.level.value) {
+              const idx = _.findIndex(member_level_x_product_card__list, { level_id: cur_user.level_id });
+              if (idx !== -1) {
+                max_change_level_count -= 1;
+                if (max_change_level_count < 0) break;
+                current_member_level_x_product_card = member_level_x_product_card__list[idx];
+                member_level_x_product_card__list = _.slice(member_level_x_product_card__list, idx + 1);
+                const money = current_member_level_x_product_card.money - prev_level_money;
+                if (money) {
+                  list.push({ user_id: cur_user.id, money, reason: `${current_member_level_x_product_card.level.name} 会员分佣` });
+                  prev_level_money = current_member_level_x_product_card.money;
+                  equal_count = 0;
+                } else if (cur_user.id === user.id) {
+                  list.push({ user_id: cur_user.id, money: 0 });
+                }
+              }
+            } else if (current_member_level_x_product_card.level_id === cur_user.level_id) {
+              const money = current_member_level_x_product_card.equal_money;
+              if (money || cur_user.id === user_id) {
+                list.push({ user_id: cur_user.id, money, reason: `${current_member_level_x_product_card.level.name} 平级奖励` });
+              }
+              equal_count += 1;
+            }
+            cur_user = await this.find('user', { id: cur_user.referee_id });
+          }
+          ext.income = list;
+        }
+      }
+    }

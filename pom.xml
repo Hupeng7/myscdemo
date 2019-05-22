@@ -26,6 +26,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!--单元测试相关依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,10 +34,28 @@
             <scope>test</scope>
         </dependency>
         <!--logback日志依赖-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+        <!--</dependency>-->
+
+        <!--log4j依赖 Spring Boot 只有1.3.x和1.3.x以下版本才支持log4j的日志配置，1.3.x以上版本只支持log4j2，logback的日志配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
         <!--set get 方法自动注入 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -89,10 +108,10 @@
         </dependency>
 
         <!-- Spring Security的依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
 
         <!-- jdbc -->
         <dependency>
@@ -102,11 +121,11 @@
 
         <!-- 嵌入式数据库通常用于开发和测试环境，不推荐用于生产环境。Spring Boot提供
         自动配置的嵌入式数据库有H2、HSQL、Derby，你不需要提供任何连接配置就能使用。 -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.hsqldb</groupId>-->
+        <!--<artifactId>hsqldb</artifactId>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
 
         <!-- mysql -->
         <dependency>
@@ -119,6 +138,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--&lt;!&ndash;切面依赖&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-aop</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
         </dependency>
 
     </dependencies>

@@ -11,10 +11,10 @@ import java.util.Date;
  */
 public interface UserService {
     /**
-     * 新增用户
-     *
+     *  新增用户
      * @param name
      * @param age
+     * @param birthday
      */
     void create(String name, Integer age, Date birthday);
 
@@ -26,7 +26,8 @@ public interface UserService {
     void deleteByName(String name);
 
     /**
-     * 获取用户总量
+     * 获取所有用户数量
+     * @return
      */
     Integer getAllUsers();
 
